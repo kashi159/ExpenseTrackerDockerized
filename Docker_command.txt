@@ -1,0 +1,9 @@
+1) docker network create my-network
+2) docker run -d --name=my-mysql --network=my-network -e MYSQL_ROOT_PASSWORD=Kashif@125 -p 3307:3306 mysql:5.7.24
+	for my-mysql bash:- 
+		1) docker exec -it my-mysql bash
+		2) mysql -u root -p
+		3) CREATE DATABASE `expense-tracker-app`;
+		4) exit
+3) docker build -t my-node-app .
+4) docker run -d --name=my-node-app --network=my-network -e DB_NAME=expense-tracker-app -e DB_USER=root -e DB_PASSWORD=Kashif@125 -e DB_HOST=my-mysql -e DB_PORT=3307 -p 4000:4000 my-node-app 
